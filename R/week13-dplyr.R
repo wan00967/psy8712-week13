@@ -36,11 +36,11 @@ write_csv(week13_tbl, "../out/week13.csv")
 # Analysis
 ## 1
 week13_tbl %>% 
-  nrow()
+  count()
 
 ## 2
 week13_tbl %>% select(employee_id) %>%
-  unique() %>% 
+  distinct() %>% 
   nrow()
 
 ## 3
