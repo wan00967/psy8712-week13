@@ -5,8 +5,8 @@ library(RMariaDB)
 library(keyring)
 
 con <- dbConnect(MariaDB(), 
-                  host = 'mysql-prod5.oit.umn.edu', 
-                  username = 'wan00967', 
+                  host = "mysql-prod5.oit.umn.edu", 
+                  username = "wan00967", 
                   password = key_get("latis-mysql","wan00967"), 
                   port = 3306,
                   ssl.ca = '../mysql_hotel_umn_20220728_interm.cer')
@@ -15,15 +15,15 @@ dbExecute(con, "USE cla_tntlab")
 
 # Data Import and Cleaning
 
-employees_tbl <- dbGetQuery(conn, "SELECT * FROM datascience_employees;") %>%
+employees_tbl <- dbGetQuery(con, "SELECT * FROM datascience_employees;") %>%
   as_tibble()
 write_csv(employees_tbl, "../data/employees.csv")
 
-testscores_tbl<- dbGetQuery(conn, "SELECT * FROM datascience_testscores;") %>%
+testscores_tbl<- dbGetQuery(con, "SELECT * FROM datascience_testscores;") %>%
   as_tibble()
 write_csv(testscores_tbl, "../data/testscores.csv")
 
-offices_tbl <- dbGetQuery(conn, "SELECT * FROM datascience_offices;") %>%
+offices_tbl <- dbGetQuery(con, "SELECT * FROM datascience_offices;") %>%
   as_tibble()
 write_csv(offices_tbl, "../data/offices.csv")
 
